@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URL Shortener</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ceb5e8, #aab1f2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 32px 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 480px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #4c1d95;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #4b5563;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      border: 2px solid #c4b5fd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #8b5cf6;
+    }
+
+    button {
+      padding: 12px;
+      background: linear-gradient(to right, #6d28d9, #9333ea);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #7c3aed, #a855f7);
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 14px;
+      background-color: #f0fdf4;
+      color: #065f46;
+      border: 2px solid #34d399;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    a {
+      color: #10b981;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> URL Shortener</h1>
+    <form action="/short" method="post">
+      <label for="longUrl">Paste a long URL:</label>
+      <input type="text" id="longUrl" name="longUrl"  required />
+      <button type="submit"> Shorten URL</button>
+
+      <% if (shortUrl) { %>
+        <div class="result">
+          ✅ Your short URL:  
+          <a href="<%= shortUrl %>" target="_blank">
+            <%= shortUrl %>
+          </a>
+        </div>
+      <% } %>
+    </form>
+  </div>
+</body>
+</html>
